@@ -50,7 +50,7 @@ const SignUpRegularay = () => {
             console.log("Passwords don't match");
             return;
         }
-        fetch('http://localhost:3000/register', {
+        fetch('https://fast-escarpment-21110.herokuapp.com/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({
