@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import SignUpWith from './SignUpWith';
 import SignUpRegularay from './SignUpRegularay';
+import { useEffect, useRef } from 'react';
 
 const StyledTitle = styled.h1`
 font-size:20px;
@@ -25,9 +26,27 @@ const StyledContainer = styled.div`
     transform: ${props => props.prop ? 'translate(-50%, -50%)' : 'translate(-50%, -70%)'};
 `;
 
-const SignUpPopup = ({showPopup}) => {
+const SignUpPopup = ({ signupPopup, setSignupPopup, signUpNode}) => {
+    const node = useRef();
+
+    const handleClick = e => {
+        if (signupPopup) {
+            if (!node.current.contains(e.target)) {
+                //outside click
+                if (!signUpNode.current.contains(e.target)) {
+                    //outside click of sign up
+                    setSignupPopup(!signupPopup);
+                }
+            }
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClick);
+    })
+
     return (
-        <StyledContainer prop={showPopup} >
+        <StyledContainer ref={node} prop={signupPopup} >
             <StyledTitle>Quick & Dirty</StyledTitle>
             <SignUpWith />
             <StyledTitle>Or</StyledTitle>

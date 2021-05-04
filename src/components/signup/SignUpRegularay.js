@@ -46,18 +46,17 @@ const SignUpRegularay = () => {
     const [ConfPassword, setConfPassword] = useState('');
 
     const SignUp = () => {
-        if (Password != ConfPassword){
+        if (Password !== ConfPassword){
             console.log("Passwords don't match");
             return;
         }
-        fetch('https://fast-escarpment-21110.herokuapp.com/register', {
+        fetch('https:/groupbuyproj.herokuapp.com/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json'},
             body: JSON.stringify({
                 email: Email,
-                name: FirstName + ' ' + LastName,
-                password: Password,
-                premission: 10
+                firstName: FirstName,
+                lastName: LastName
             })
         })
             .then(res => res.json())

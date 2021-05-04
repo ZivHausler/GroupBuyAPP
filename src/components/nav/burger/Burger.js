@@ -14,7 +14,6 @@ const BurgerDiv = styled.div`
         display: none;
     }
 `;
-
 const JustDiv = styled.div`
     display: flex;
     flex-direction: column;
@@ -23,14 +22,12 @@ const JustDiv = styled.div`
     width: 30px;
     height: 100%;
 `;
-
 const Line = styled.div`
     margin: 2.5px 0px;
     background: white;
     height: 2px;
     width: 30px;
 `;
-
 const Menu = styled.ul`
     list-style-type: none;
     /* display: flex; */
@@ -41,18 +38,18 @@ const Menu = styled.ul`
     left: 50%;
     top: 22px;
     padding: 10px;
-    transform: ${props => props.prop ? 'translate(-50%, 0%)' : 'translate(-50%, -10%)'};
+    transform: ${props => props.prop ? 'translate(-50%, 0%)' : 'translate(-50%, -80%)'};
     background-color: #141414;
     justify-content: center;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    cursor: auto;
     transition: all 0.5s cubic-bezier(0.61,-0.23, 0.43, 1.35);
     @media (min-width: 292px) {
     }
     @media (min-width: 1100px) {
     }
 `;
-
 const Link = styled.li`
     z-index: 3;
     cursor: pointer;
@@ -70,22 +67,23 @@ const Link = styled.li`
      }
 `;
 
-const Burger = ({shouldBeOpen, setShouldBeOpen}) => {
+const Burger = ({shouldBeOpen, setShouldBeOpen, signupPopup, setSignupPopup, loginPopup, setLoginPopup}) => {
 
     const ToggleLinks = () => {
         setShouldBeOpen(!shouldBeOpen)
     }
+    
 
     return(
-        <BurgerDiv onClick={ToggleLinks}>
+        <BurgerDiv  onClick={ToggleLinks}>
             <JustDiv>
                 <Line/>
                 <Line/>
                 <Line/>
             </JustDiv>
             <Menu prop={shouldBeOpen}>
-                <Link prop={shouldBeOpen}>Sign Up</Link>
-                <Link prop={shouldBeOpen}>Log In</Link>
+                <Link onClick={() => {setSignupPopup(!signupPopup)}} prop={shouldBeOpen}>Sign Up</Link>
+                <Link onClick={() => {setLoginPopup(!loginPopup)}} prop={shouldBeOpen}>Log In</Link>
                 <Link prop={shouldBeOpen}>Log Out</Link>
             </Menu>
         </BurgerDiv>

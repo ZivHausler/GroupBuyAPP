@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import Logo from './logo/Logo';
 import Links from './links/Links';
 import Input from '../input/Input'
 import Burger from './burger/Burger';
 import SignUpPopup from '../signup/SignUpPopup';
+import LoginPopup from '../login/LoginPopup';
 
 const NavContainer = styled.div`
     background-color: rgba(20,20,20,1);
@@ -20,8 +21,8 @@ const NavContainer = styled.div`
 `;
 const Popup = styled.div`
     transition:all ease-in-out 0.4s;
-    z-index:${props => props.showPopup ? '4' : '-1'};
-    background-color:${props => props.showPopup ? 'rgba(138, 138, 138, 0.678)' : 'rgba(138, 138, 138, 0)'};
+    z-index:${props => props.prop ? '4' : '-1'};
+    background-color:${props => props.prop ? 'rgba(138, 138, 138, 0.678)' : 'rgba(138, 138, 138, 0)'};
     width:100%;
     height:100vh;
     position:fixed;
@@ -30,27 +31,27 @@ const Popup = styled.div`
 `;
 
 const Nav = () => {
-    const [showPopup, setShowPopup] = useState(false);
+    const [loginPopup, setLoginPopup] = useState(false);
+    const [signupPopup, setSignupPopup] = useState(false);
     const [shouldBeOpen, setShouldBeOpen] = useState(false);
 
-    useEffect(() => {
-    }, [shouldBeOpen]);
-
-    useEffect(() => {
-
-    }, [showPopup]);
+    // ref
+    const signUpNode = useRef();
+    const loginNode = useRef();
 
     return (
         <div>
             <NavContainer>
                 <Logo />
                 <Input />
-                <Links showPopup={showPopup} setShowPopup={setShowPopup} />
-                <Burger shouldBeOpen={shouldBeOpen} setShouldBeOpen={setShouldBeOpen} />
-                {/* <BurgerMenu /> */}
+                <Links loginPopup={loginPopup} setLoginPopup={setLoginPopup} signupPopup={signupPopup} setSignupPopup={setSignupPopup} signUpNode={signUpNode} loginNode={loginNode} />
+                <Burger loginPopup={loginPopup} setLoginPopup={setLoginPopup} signupPopup={signupPopup} setSignupPopup={setSignupPopup} shouldBeOpen={shouldBeOpen} setShouldBeOpen={setShouldBeOpen} />
             </NavContainer>
-            <Popup showPopup={showPopup}>
-                <SignUpPopup showPopup={showPopup} />
+            <Popup prop={signupPopup} >
+                <SignUpPopup signupPopup={signupPopup} setSignupPopup={setSignupPopup} signUpNode={signUpNode} />
+            </Popup>
+            <Popup prop={loginPopup} >
+                <LoginPopup loginPopup={loginPopup} setLoginPopup={setLoginPopup} loginNode={loginNode} />
             </Popup>
         </div>
 

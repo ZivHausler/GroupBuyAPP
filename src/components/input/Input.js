@@ -4,7 +4,6 @@ import FilterSearch from '../filtersearch/FilterSearch';
 import database from '../database';
 import Magnifyglass from '../input/image/magnifyglass.png';
 
-
 const StyledInput = styled.input`
 font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     text-align: center;
@@ -45,7 +44,6 @@ const MagnifyImg = styled.img`
     top: 25px;
     right: 10px;
 `
-
 const Input = () => {
     let filtered = [];
     const node = useRef();

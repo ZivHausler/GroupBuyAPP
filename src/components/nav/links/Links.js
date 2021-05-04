@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+
+
 const ULLinks = styled.ul`
         list-style-type: none;
         display: flex;
@@ -26,12 +28,12 @@ const Link = styled.li`
         color: black;
      }
 `;
-const Links = ({ showPopup,setShowPopup }) => {
+const Links = ({ signupPopup,setSignupPopup, signUpNode, loginNode,loginPopup, setLoginPopup }) => {
     return (
         <>
             <ULLinks>
-                <Link onClick={() => {setShowPopup(!showPopup)}}>Sign Up</Link>
-                <Link>Log In</Link>
+                <Link onClick={() => {setSignupPopup(!signupPopup)}} ref={signUpNode}>Sign Up</Link>
+                <Link onClick={() => {setLoginPopup(!loginPopup)}} ref={loginNode}>Log In</Link>
                 <Link>Log Out</Link>
             </ULLinks>
         </>
